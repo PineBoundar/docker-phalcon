@@ -14,13 +14,11 @@ RUN make && make install
 ADD ./redis/redis.conf /etc/redis.conf
 
 # postfix
-RUN yum  -y install postfix
+RUN yum  -y install postfix | true
 
 # install mariadb
 ADD ./mariadb/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
-RUN yum install -y MariaDB-server
-RUN yum install -y MariaDB-client
-RUN yum install -y MariaDB-devel
+RUN yum install -y MariaDB-server MariaDB-client MariaDB-devel
 ADD ./mariadb/transaction-isolation.cnf /etc/my.cnf.d/transaction-isolation.cnf
 
 # install APR
@@ -39,7 +37,7 @@ RUN ./configure --prefix=/opt/apr-util/apr-util-1.5.4 --with-apr=/opt/apr/apr-1.
 RUN make && make install
 
 # install pcre & openssl
-RUN  yum install -y pcre-devel  openssl-devel  libxml2-devel curl-devel libpng-devel
+RUN  yum install -y pcre-devel  openssl-devel  libxml2-devel curl-devel libpng-devel | true
 
 # install apache
 WORKDIR /usr/local/src
@@ -70,7 +68,7 @@ RUN make && make install
 RUN echo yes | pecl install apcu-4.0.11
 
 # install git
-RUN yum -y install git
+RUN yum -y install git | true
 
 # install phalcon
 WORKDIR /usr/local/src
