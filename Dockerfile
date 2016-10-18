@@ -49,6 +49,16 @@ WORKDIR /usr/local/src
 RUN wget --max-redirect=3 -O php-7.0.11.tar.gz http://jp2.php.net/get/php-7.0.11.tar.gz/from/this/mirror
 RUN tar -xzvf php-7.0.11.tar.gz
 WORKDIR /usr/local/src/php-7.0.11
+
+# install mcypt
+WORKDIR /usr/local/src
+RUN wget 'http://osdn.jp/frs/g_redir.php?m=kent&f=%2Fmcrypt%2FLibmcrypt%2F2.5.8%2Flibmcrypt-2.5.8.tar.gz' -O libmcrypt-2.5.8.tar.gz
+RUN tar -xzvf libmcrypt-2.5.8.tar.gz
+WORKDIR libmcrypt-2.5.8
+RUN ./configure --disable-posix-threads
+RUN make install
+
+# install apxs
 RUN  ./configure --with-apxs2=/usr/local/apache2/bin/apxs --with-mysql --with-zlib --enable-mysqlnd --enable-zip --with-xml --with-curl --with-hash --with-pdo --enable-mbstring --with-pdo-mysql --with-openssl --with-mcrypt=/usr/local
 RUN make && make install
 
