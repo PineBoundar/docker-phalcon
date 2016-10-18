@@ -19,12 +19,12 @@ This image is which designed to launch Phalcon applications.
 * OS: CentOS-6.7
 
 # Run your app
-Your Phalcon app has to be mounted in the container in the /var/www/html directory.  
+Your Phalcon app has to be mounted in the container in the /var/www/html/public directory.  
 Should you want to publish your app port to the host, you must use the -p argument.  
 Here is an example of a docker run command:
 ```shell
 docker run -d \
-  -v /path/to/your/app:/var/www/html/:rw \
+  -v /path/to/your/app:/var/www/html/public:rw \
   -p 80:80 \
   -p 443:443 \
   -p 3306:3306 \
