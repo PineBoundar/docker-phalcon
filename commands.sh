@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for SERVICE in mysql rsyslog postfix
+for SERVICE in mysql rsyslog
 do
     service $SERVICE start
 done
