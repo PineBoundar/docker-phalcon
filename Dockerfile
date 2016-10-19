@@ -3,7 +3,7 @@ FROM centos:centos6.7
 MAINTAINER matnow <matsnow@outlook.jp>
 
 # system update
-RUN yum -y update && yum install -y initscripts wget gcc make make tar gcc-c++ git
+RUN yum -y update && yum install -y initscripts wget gcc make make tar gcc-c++ git | true
 
 # install redis
 WORKDIR /usr/local/src
@@ -15,7 +15,7 @@ ADD ./redis/redis.conf /etc/redis.conf
 
 # install mariadb
 ADD ./mariadb/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
-RUN yum install -y MariaDB-server MariaDB-client MariaDB-devel
+RUN yum install -y MariaDB-server MariaDB-client MariaDB-devel | true
 ADD ./mariadb/transaction-isolation.cnf /etc/my.cnf.d/transaction-isolation.cnf
 
 # install APR
