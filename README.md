@@ -23,12 +23,9 @@ Your Phalcon app has to be mounted in the container in the /var/www/html/public 
 Should you want to publish your app port to the host, you must use the -p argument.  
 Here is an example of a docker run command:
 ```shell
-docker run -d \
-  --name {container-name}
-  -v /path/to/your/app:/var/www/html:rw \
-  -p 80:80 \
-  -p 443:443 \
-  {image-name}
+docker run -d -p 80:80 -p 443:443 \
+  -v {/path/to/your/app}:/var/www/html:rw \
+  {image-name} --name {container-name}
 ```
 You can also package your app, in order to do that, create a Dockerfile like it:   
 ```docker
