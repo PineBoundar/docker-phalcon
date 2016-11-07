@@ -1,0 +1,11 @@
+[xdebug]
+zend_extension=xdebug.so
+[apcu]
+extension=apcu.so
+[redis]
+extension=redis.so
+[phalcon]
+extension=phalcon.so
+
+always_populate_raw_post_data=-1
+pdo_mysql.default_socket=/var/lib/mysql/mysql.sock
