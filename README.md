@@ -16,7 +16,7 @@ This image is which designed to launch Phalcon applications.
 * Redis: 2.8.12
 * MariaDB: 10.2.1
 * Apache: 2.4.20
-* OS: CentOS-6.7
+* OS: CentOS-7.2.1511
 
 # Run your app
 Your Phalcon app has to be mounted in the container in the /var/www/html/public directory.  
@@ -24,14 +24,24 @@ Should you want to publish your app port to the host, you must use the -p argume
 Here is an example of a docker run command:
 ```shell
 docker run -d \
-  -v /path/to/your/app:/var/www/html/public:rw \
+  --name {container-name}
+  -v /path/to/your/app:/var/www/html:rw \
   -p 80:80 \
   -p 443:443 \
-  -p 3306:3306 \
-  -p 6379:6379
+  {image-name}
 ```
 You can also package your app, in order to do that, create a Dockerfile like it:   
 ```docker
 FROM matsnow/php7-phalcon:latest
 MAINTERNER <your@email.com>
+```
+
+# Create your app
+You may create a new Phalcon app.   
+You attach this container and execute follow command.
+```shell
+docker exec -it {container-name} /bin/bash
+su www
+cd /var/www/html
+phalcon create-project {your-app-name}
 ```
