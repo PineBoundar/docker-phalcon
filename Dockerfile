@@ -1,11 +1,13 @@
-FROM centos:centos7
+#FROM centos:6.7
+FROM centos:7
 
 MAINTAINER matnow <matsnow@outlook.jp>
 
 # install package
+ADD ./mariadb/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
 RUN yum -y update && \
     yum install -y initscripts wget gcc make make tar gcc-c++ git vim which \
-                   mariadb-server mariadb \
+                   mariadb-server mariadb-client mariadb \
                    pcre-devel openssl-devel libxml2-devel curl-devel libpng-devel autoconf | true
 
 WORKDIR /usr/local/src
